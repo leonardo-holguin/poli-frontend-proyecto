@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Desarrollo de sitio web",
+    "slug": "4297-desarrollo-de-sitio-web",
+    "description": "Creación de sitios web responsivos y optimizados para SEO.",
+    "price": 2500000,
+    "discountPrice": 500000,
+    "amount": 5,
+    "imageURL": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "imageCopyrightURL": "https://unsplash.com/es/@ilyapavlov?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    "imageCopyrightText": "Foto de Ilya Pavlov en Unsplash"
+  },
+  {
+    "id": 2,
+    "name": "Desarrollo de aplicación móvil",
+    "slug": "2860-desarrollo-de-aplicacion-movil",
+    "description": "Diseño e implementación de apps nativas y multiplataforma.",
+    "price": 3000000,
+    "discountPrice": 600000,
+    "amount": 5,
+    "imageURL": "https://images.unsplash.com/photo-1592950630581-03cb41342cc5?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "imageCopyrightURL": "https://unsplash.com/es/@luiskcortes?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    "imageCopyrightText": "Foto de Luis Cortés en Unsplash"
+  },
+  {
+    "id": 3,
+    "name": "Consultoría en ciberseguridad",
+    "slug": "3405-consultoria-en-ciberseguridad",
+    "description": "Evaluación de vulnerabilidades y planes de mitigación.",
+    "price": 1800000,
+    "discountPrice": 0,
+    "amount": 10,
+    "imageURL": "https://images.unsplash.com/photo-1590065707046-4fde65275b2e?q=80&w=1630&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "imageCopyrightURL": "https://unsplash.com/es/@danny144?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    "imageCopyrightText": "Foto de Dan Nelson en Unsplash"
+  },
+  {
+    "id": 4,
+    "name": "Implementación de CRM",
+    "slug": "5767-implementacion-de-crm",
+    "description": "Instalación y personalización de soluciones CRM como Salesforce.",
+    "price": 2000000,
+    "discountPrice": 400000,
+    "amount": 7,
+    "imageURL": "https://images.unsplash.com/photo-1555371363-27a37f8e8c46?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "imageCopyrightURL": "https://unsplash.com/es/@ymoran?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    "imageCopyrightText": "Foto de Y M en Unsplash"
+  },
+  {
+    "id": 5,
+    "name": "Optimización SEO",
+    "slug": "3373-optimizacion-seo",
+    "description": "Análisis y mejoras on-page y off-page para mayor visibilidad.",
+    "price": 800000,
+    "discountPrice": 0,
+    "amount": 20,
+    "imageURL": "https://images.unsplash.com/photo-1686061594183-8c864f508b00?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "imageCopyrightURL": "https://unsplash.com/es/@1981digital?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    "imageCopyrightText": "Foto de 1981 Digital en Unsplash"
+  },
+  {
+    "id": 6,
+    "name": "Automatización de procesos",
+    "slug": "3384-automatizacion-de-procesos",
+    "description": "Desarrollo de scripts y pipelines para optimizar flujos de trabajo.",
+    "price": 1200000,
+    "discountPrice": 250000,
+    "amount": 8,
+    "imageURL": "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=80&w=1106&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "imageCopyrightURL": "https://unsplash.com/es/@dawson2406?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    "imageCopyrightText": "Foto de Stephen Dawson en Unsplash"
+  },
+  {
+    "id": 7,
+    "name": "Migración a la nube",
+    "slug": "8986-migracion-a-la-nube",
+    "description": "Planificación y ejecución de migraciones a AWS, Azure o GCP.",
+    "price": 1500000,
+    "discountPrice": 300000,
+    "amount": 6,
+    "imageURL": "https://images.unsplash.com/photo-1690627931320-16ac56eb2588?q=80&w=1493&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "imageCopyrightURL": "https://unsplash.com/es/@hazelz?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    "imageCopyrightText": "Foto de Hazel Z en Unsplash"
+  },
+  {
+    "id": 8,
+    "name": "Soporte y mantenimiento TI",
+    "slug": "1306-soporte-y-mantenimiento-ti",
+    "description": "Monitoreo, soporte técnico y actualizaciones periódicas.",
+    "price": 700000,
+    "discountPrice": 100000,
+    "amount": 30,
+    "imageURL": "https://images.unsplash.com/photo-1580894894513-541e068a3e2b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "imageCopyrightURL": "https://unsplash.com/es/@thisisengineering?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    "imageCopyrightText": "Foto de ThisisEngineering en Unsplash"
+  },
+  {
+    "id": 9,
+    "name": "Análisis de datos e inteligencia de negocios",
+    "slug": "3019-analisis-de-datos-e-inteligencia-de-negocios",
+    "description": "Dashboards y reportes basados en BI para toma de decisiones.",
+    "price": 2200000,
+    "discountPrice": 400000,
+    "amount": 10,
+    "imageURL": "https://images.unsplash.com/photo-1674027444485-cec3da58eef4?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "imageCopyrightURL": "https://unsplash.com/es/@growtika?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    "imageCopyrightText": "Foto de Growtika en Unsplash"
+  },
+  {
+    "id": 10,
+    "name": "Diseño de UX/UI",
+    "slug": "2163-diseno-de-uxui",
+    "description": "Prototipado y diseño de interfaces centradas en el usuario.",
+    "price": 900000,
+    "discountPrice": 0,
+    "amount": 15,
+    "imageURL": "https://images.unsplash.com/photo-1602576666092-bf6447a729fc?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "imageCopyrightURL": "https://unsplash.com/es/@tirzavandijk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+    "imageCopyrightText": "Foto de Tirza van Dijk en Unsplash"
+  }
+]

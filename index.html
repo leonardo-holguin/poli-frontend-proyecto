@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/utils.js"></script>
+    <script src="/js/persistence.js"></script>
+    <script src="/js/components/HomeServiceCard.js"></script>
+    <title>NeuroTek | Servicios tecnológicos</title>
+</head>
+
+<body>
+    <header class="header" id="main-header">
+        <a href="/">
+            <img class="header__img" src="/images/logo_white.png" alt="Logo empresarial de NeuroTek">
+        </a>
+        <a href="/login">
+            <button class="button button--call-action">
+                <span class="button__text">Dashboard</span>
+                <span><svg class="button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                        fill="currentColor" class="size-6">
+                        <path
+                            d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75ZM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 0 1-1.875-1.875V8.625ZM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 0 1 3 19.875v-6.75Z" />
+                    </svg>
+                </span>
+            </button>
+        </a>
+    </header>
+    <main class="hero">
+        <h1 class="hero__title">Impulsamos tu transformación digital con soluciones inteligentes y seguras</h1>
+        <p class="hero__subtitle">Tecnología confiable y segura para transformar organizaciones en la era digital</p>
+        <a class="button button--call-action hero__button" href="#services">Catálogo de
+            servicios
+        </a>
+        <a href="https://unsplash.com/es/@vackground?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+            target="_blank" rel="noopener noreferrer nofollow sponsored" class="hero__copyright">Foto de vackground.com
+            en Unsplash</a>
+    </main>
+    <div class="background background--black-overlay">
+        <picture>
+            <source media="(min-width:650px)" srcset="/images/background-hd.jpg">
+            <img class="background__img" src="/images/background-sd.jpg" alt="NeuroTek Imgagen de fondo">
+        </picture>
+    </div>
+    <section class="section" id="services">
+        <h2 class="section__title">Nuestros servicios tecnológicos</h2>
+        <p class="section__subtitle">En <strong>NeuroTek</strong> diseñamos soluciones innovadoras que integran
+            tecnología de vanguardia
+            con las necesidades de tu
+            negocio.
+            Nuestro enfoque combina experiencia, seguridad y creatividad para ayudarte a crecer en un mundo cada vez más
+            digital.</p>
+        <div class="card__container" id="cardContainer"></div>
+    </section>
+    <footer class="footer">
+        <p>Este sitio web es un prototipo académico desarrollado como parte de una actividad universitaria. La
+            información, servicios y marcas aquí presentados son ficticios y no representan a una empresa real.</p>
+        <br />
+        <p><strong>Uso de datos personales</strong></p>
+        <br />
+        <p>Los datos ingresados en este sitio no serán almacenados ni utilizados con fines comerciales. Son únicamente de carácter demostrativo.</p>
+        <br />
+        <p><strong>© 2025 NeuroTek</strong> – Proyecto académico universitario. Uso exclusivo con fines educativos.
+</p>
+    </footer>
+    <script>
+        async function main() {
+            const cardContainer = document.getElementById('cardContainer');
+
+            const persistence = new Persistence();
+            const allServices = await persistence.getServices();
+
+            allServices.forEach(service => {
+                cardContainer.appendChild(createHomeServiceCard(service));
+            });
+        }
+        void main();
+    </script>
+    <script src="/js/styles.js"></script>
+</body>
+
+</html>
