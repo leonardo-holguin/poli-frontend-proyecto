@@ -1,4 +1,4 @@
-# VanillaJS Project
+# NeuroTek Project
 
 Un proyecto ligero construido con JavaScript puro (vanillaJS) y sin ningún framework de JavaScript o CSS.
 
@@ -7,14 +7,13 @@ Un proyecto ligero construido con JavaScript puro (vanillaJS) y sin ningún fram
 ## Características
 
 - Código escrito 100 % en JavaScript nativo  
-- No se utiliza ningún framework ni librería externa de JS o CSS  
 - Único recurso externo: fuente **Roboto** desde Google Fonts  
 
 ---
 
 ## Recursos externos
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 ---
 
@@ -35,9 +34,16 @@ Un proyecto ligero construido con JavaScript puro (vanillaJS) y sin ningún fram
 
 ```
 /
-├── index.html      ← Punto de entrada HTML
-├── src/
-│   └── main.js     ← Lógica en JavaScript puro
-└── styles/
-    └── main.css    ← Estilos sin frameworks
+├── index.html          ← Punto de entrada HTML
+├── css/
+│   └── styles.css      ← Estilos
+└── data/
+    └── services.json   ← Base de datos local de servicios
+    └── users.json      ← Base de datos local de usuarios
+└── images/
+└── js/
+    └── components      ← Web components para la creación del sitio web
+    └── persistence.js  ← Handler de la base de datos local y autenticación
+    └── styles.js       ← Listener del scroller
+    └── utils.js        ← Funciones comunes y de utilidad
 ```
