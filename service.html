@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/utils.js"></script>
+    <script src="/js/persistence.js"></script>
+    <script src="/js/components/Header.js"></script>
+    <script src="/js/components/Footer.js"></script>
+    <script src="/js/components/ServiceDetail.js"></script>
+    <title>NeuroTek | Servicios tecnológicos</title>
+</head>
+
+<body>
+    <section class="section" id="serviceDetailContainer">
+    </section>
+    <script>
+        document.body.insertBefore(createHeader(), document.body.firstChild);
+        document.body.appendChild(createFooter());
+
+        async function main() {
+            const queryString = window.location.search;
+            const params = new URLSearchParams(queryString);
+            const currentSlug = params.get('slug');
+
+            const serviceDetailContainer = document.getElementById('serviceDetailContainer');
+
+            const persistence = new Persistence();
+            const currentService = await persistence.getServiceBySlug(currentSlug);
+
+            serviceDetailContainer.appendChild(createServiceDetail(currentService));
+
+            const amountCount = document.getElementById('amountCount');
+            const amountDown = document.getElementById('amountDown');
+            const amountUp = document.getElementById('amountUp');
+            const amountButton = document.getElementById('amountButton');
+            const totalValue = document.getElementById('totalValue');
+
+            let amountCountValue = parseInt(amountCount.innerText);
+
+            amountDown.addEventListener('click', () => {
+                if (amountCountValue > 1) {
+                    amountCountValue -= 1;
+                    amountCount.innerText = amountCountValue;
+                }
+                if (amountCountValue == 1) {
+                    amountButton.innerText = 'Solicitar servicio';
+                    totalValue.style.display = 'none';
+                } else {
+                    amountButton.innerText = 'Solicitar servicios';
+                    totalValue.style.display = 'block';
+                    totalValue.innerText = 'Valor total: ' + currencyFormat((currentService.price - currentService.discountPrice)*amountCountValue);
+                }
+            });
+
+            amountUp.addEventListener('click', () => {
+                if (amountCountValue < currentService.amount) {
+                    amountCountValue += 1;
+                    amountCount.innerText = amountCountValue;
+                }
+                if (amountCountValue == 1) {
+                    amountButton.innerText = 'Solicitar servicio';
+                    totalValue.style.display = 'none';
+                } else {
+                    amountButton.innerText = 'Solicitar servicios';
+                    totalValue.style.display = 'block';
+                    totalValue.innerText = 'Valor total: ' + currencyFormat((currentService.price - currentService.discountPrice)*amountCountValue);
+                }
+            });
+        }
+        void main();
+    </script>
+    <script src="/js/styles.js"></script>
+</body>
+
+</html>

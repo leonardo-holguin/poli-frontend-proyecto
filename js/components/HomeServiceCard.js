@@ -26,7 +26,7 @@ function createHomeServiceCard(service) {
         <h4 class="card__body__title">${service.name}</h4>
         <p class="card__body__description">${service.description}</p>
         ${formatPrice(service.price, service.discountPrice)}
-        <a href="/service?slug=${service.slug}"><button class="button card__body__button">Ir al servicio</button></a>
+        <a href="/service.html?slug=${service.slug}"><button class="button card__body__button">Ir al servicio</button></a>
     </div>
   `;
     return div;

@@ -95,6 +95,16 @@ class Persistence {
         return this.__services;
     }
 
+    async getServiceBySlug(slug) {
+        const services = await this.getServices();
+        for (let i = 0; services.length; i++) {
+            if (services[i].slug === slug) {
+                return services[i];
+            }
+        }
+        return null;
+    }
+
     async createService(
         name,
         description,
