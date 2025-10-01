@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>NeuroTek | Servicios tecnológicos</title>
+    <script src="/js/persistence.js"></script>
+    <script>
+        // Guard
+        async function main() {
+            try {
+                const persistence = new Persistence();
+                await persistence.getCurrentUser();
+            } catch (error) {
+                window.location.href = '/login.html';
+            }
+        }
+        void main();
+    </script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/components/Header.js"></script>
+    <script src="/js/components/Footer.js"></script>
+    <script src="/js/components/DashboardServiceCard.js"></script>
+    <script src="/js/components/Toast.js"></script>
+</head>
+
+<body>
+    <div class="dashboard section">
+        <div class="dashboard--header">
+            <h1 class="dashboard--title">Administración de servicios</h1>
+            <a href="/service-form.html?mode=creation">
+                <button class="button button__primary">Crear servicio</button>
+            </a>
+        </div>
+        <div class="dashboard--card--container" id="cardContainer">
+        </div>
+    </div>
+    <div class="dashboard--delete-service-modal" id="deleteServiceModal">
+        <div class="dashboard--delete-service-container">
+            <h3 class="dashboard--delete-service--title">Eliminar servicio</h3>
+            <p>¿Desea eliminar el servicio <strong id="serviceToDeleteName">Nombre del servicio</strong>?</p>
+            <div class="dashboard--delete-service--buttons">
+                <button class="button dashboard--delete-service-cancel-button" id="cancelDeleteService">Cancelar</button>
+                <button class="button button__negative" id="deleteServiceButton">Eliminar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.body.insertBefore(createHeader(), document.body.firstChild);
+        document.body.appendChild(createFooter());
+
+        async function main() {
+            const cardContainer = document.getElementById('cardContainer');
+            const deleteServiceModal = document.getElementById('deleteServiceModal');
+            const cancelDeleteService = document.getElementById('cancelDeleteService');
+            const deleteServiceButton = document.getElementById('deleteServiceButton');
+            const serviceToDeleteName = document.getElementById('serviceToDeleteName');
+
+            let serviceIdToDelete;
+
+            const persistence = new Persistence();
+
+            const getServiceData = async () => {
+                const allServices = await persistence.getServices();
+                cardContainer.innerHTML = '';
+                allServices.forEach(service => {
+                    cardContainer.appendChild(createDashboardServiceCard(service));
+                });
+            }
+            await getServiceData();
+
+            cardContainer.addEventListener('click', (e) => {
+                if (e.target.dataset.deleteService === 'true') {
+                    serviceToDeleteName.innerText = e.target.dataset.name;
+                    serviceIdToDelete = parseInt(e.target.dataset.id);
+                    deleteServiceModal.style.display = 'flex';
+                }
+            });
+
+            cancelDeleteService.addEventListener('click', () => {
+                deleteServiceModal.style.display = 'none';
+            });
+
+            deleteServiceButton.addEventListener('click', async () => {
+                await persistence.deleteService(serviceIdToDelete);
+                await getServiceData();
+                deleteServiceModal.style.display = 'none';
+                document.body.appendChild(createToast('positive', 'Servicio eliminado correctamente'));
+            });
+        }
+        void main();
+    </script>
+    <script src="/js/styles.js"></script>
+</body>
+
+</html>

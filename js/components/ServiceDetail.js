@@ -31,6 +31,9 @@ function createServiceDetail(service) {
     div.innerHTML = `
     <div class="service-detail-img">
         <img class="background__img" src="${service.imageURL}" alt="${service.name}">
+        <a class="card__header__caption"
+            href="${service.imageCopyrightURL}"
+            target="_blank" rel="noopener noreferrer nofollow sponsored" class="hero__copyright">${service.imageCopyrightText}</a>
     </div>
     <div class="service-detail-info">
         <h2 class="service-detail-name">${service.name}</h2>
