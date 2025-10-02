@@ -39,7 +39,7 @@ function createHeader() {
                         signoutButton.style.display = 'block';
                         signoutButton.addEventListener('click', async () => {
                             await persistence.logOut();
-                            location.reload();
+                            window.location.href = '/';
                         });
                     }
                 } catch (error) {

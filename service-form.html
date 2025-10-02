@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>NeuroTek | Servicios tecnológicos</title>
+    <script src="/js/persistence.js"></script>
+    <script>
+        // Guard
+        async function main() {
+            try {
+                const persistence = new Persistence();
+                await persistence.getCurrentUser();
+            } catch (error) {
+                window.location.href = '/login.html';
+            }
+        }
+        void main();
+    </script>
+    <script src="/js/utils.js"></script>
+    <script src="/js/components/Header.js"></script>
+    <script src="/js/components/Footer.js"></script>
+    <script src="/js/components/HomeServiceCard.js"></script>
+    <script src="/js/components/Toast.js"></script>
+</head>
+
+<body>
+    <div class="dashboard section">
+        <div class="dashboard--header">
+            <h1 class="dashboard--title" id="mainTitle"></h1>
+            <a href="/dashboard.html">
+                <button class="button button__negative">Cancelar</button>
+            </a>
+        </div>
+        <div class="service--form--container">
+            <form class="service--form" id="serviceForm">
+                <label class="login--form--label" for="name">Nombre</label>
+                <input class="login--form--input" type="text" name="name" id="name" placeholder="Nombre del servicio"
+                    minlength="4" maxlength="50" required>
+                <label class="login--form--label" for="description">Descripción</label>
+                <textarea class="login--form--input" name="description" id="description"
+                    placeholder="Descripción del servicio" minlength="10" maxlength="200" required></textarea>
+                <label class="login--form--label" for="price">Precio</label>
+                <input class="login--form--input" type="number" name="price" id="price"
+                    placeholder="Precio del servicio" min="0" max="999999999" required>
+                <label class="login--form--label" for="amount">Cantidad existente</label>
+                <input class="login--form--input" type="number" name="amount" id="amount"
+                    placeholder="Cantidad existente del servicio" min="1" max="9999" required>
+                <div class="service--form--switch__container">
+                    <div class="service--form--switch" id="hasDiscount">
+                        <div class="service--form--switch__label" id="hasDiscountYes">Sí</div>
+                        <div class="service--form--switch__label" id="hasDiscountNo">No</div>
+                    </div>
+                    <label class="service--form--switch--label" for="hasDiscount">Este servicio cuenta con una
+                        promoción</label>
+                </div>
+                <label class="login--form--label" for="discountPrice" id="discountPriceLabel">Precio despues de la
+                    promoción</label>
+                <input class="login--form--input" type="number" name="discountPrice" id="discountPrice"
+                    placeholder="Valor total del servicio descontando la promoción" min="0" max="999999999" required>
+                <label class="login--form--label" for="imageUrl">URL de la imagen</label>
+                <input class="login--form--input" type="url" name="imageUrl" id="imageUrl"
+                    placeholder="URL de la imagen del servicio" required>
+                <label class="login--form--label" for="imageCopyrightURL">URL del copyright imagen</label>
+                <input class="login--form--input" type="url" name="imageCopyrightURL" id="imageCopyrightURL"
+                    placeholder="URL válido para el copyright de la imagen del servicio" required>
+                <label class="login--form--label" for="imageCopyrightText">Texto de copyright</label>
+                <input class="login--form--input" type="text" name="imageCopyrightText" id="imageCopyrightText"
+                    placeholder="Texto legal para el copyright de la imagen" minlength="4" maxlength="50" required>
+                <input class="button button__primary" type="submit" name="submit" id="submit" value="Guardar">
+            </form>
+            <div class="service--form--preview" id="preview"></div>
+        </div>
+    </div>
+    <button class="button button__show__preview" id="showPreview">
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                <path fill-rule="evenodd"
+                    d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
+                    clip-rule="evenodd" />
+            </svg>
+        </span>
+    </button>
+    <script>
+        document.body.insertBefore(createHeader(), document.body.firstChild);
+        document.body.appendChild(createFooter());
+
+        const persistence = new Persistence();
+        const mainTitle = document.getElementById('mainTitle');
+        const hasDiscount = document.getElementById('hasDiscount');
+        const hasDiscountYes = document.getElementById('hasDiscountYes');
+        const hasDiscountNo = document.getElementById('hasDiscountNo');
+        const discountPriceLabel = document.getElementById('discountPriceLabel');
+        const preview = document.getElementById('preview');
+        const showPreview = document.getElementById('showPreview');
+
+        const queryString = window.location.search;
+        const params = new URLSearchParams(queryString);
+        const currentMode = params.get('mode');
+        const currentId = params.get('id');
+
+        const serviceForm = document.getElementById('serviceForm');
+        const name = document.getElementById('name');
+        const description = document.getElementById('description');
+        const price = document.getElementById('price');
+        const amount = document.getElementById('amount');
+        const discountPrice = document.getElementById('discountPrice');
+        const imageUrl = document.getElementById('imageUrl');
+        const imageCopyrightURL = document.getElementById('imageCopyrightURL');
+        const imageCopyrightText = document.getElementById('imageCopyrightText');
+        const submit = document.getElementById('submit');
+
+        let hasDiscountSwitch = false;
+
+        const activateHasDiscount = () => {
+            if (hasDiscountSwitch) {
+                hasDiscountYes.classList.add('switch__positive');
+                hasDiscountNo.classList.remove('switch__negative');
+                discountPriceLabel.style.display = 'block';
+                discountPrice.style.display = 'block';
+                discountPrice.required = true;
+            } else {
+                hasDiscountYes.classList.remove('switch__positive');
+                hasDiscountNo.classList.add('switch__negative');
+                discountPriceLabel.style.display = 'none';
+                discountPrice.style.display = 'none';
+                discountPrice.value = '';
+                discountPrice.required = false;
+            }
+        };
+
+        const renderPreview = () => {
+            const priceValue = parseFloat(price.value) || 0;
+            const discountPriceValue = priceValue - (hasDiscountSwitch ? (parseFloat(discountPrice.value) || 0) : priceValue);
+
+            const service = {
+                name: name.value,
+                description: description.value,
+                price: priceValue,
+                amount: parseInt(amount.value) || 0,
+                discountPrice: discountPriceValue,
+                imageURL: imageUrl.value,
+                imageCopyrightURL: imageCopyrightURL.value,
+                imageCopyrightText: imageCopyrightText.value
+            };
+            preview.innerHTML = '';
+            preview.appendChild(createHomeServiceCard(service));
+        };
+
+        async function main() {
+            if (currentMode === 'creation') {
+                mainTitle.innerText = 'Crear servicio';
+            } else if (currentMode === 'edition') {
+                mainTitle.innerText = 'Editar servicio';
+
+                const currentService = await persistence.getServiceById(parseInt(currentId));
+                name.value = currentService.name;
+                description.value = currentService.description;
+                price.value = currentService.price;
+                amount.value = currentService.amount;
+                imageUrl.value = currentService.imageURL;
+                imageCopyrightURL.value = currentService.imageCopyrightURL;
+                imageCopyrightText.value = currentService.imageCopyrightText;
+                if (currentService.discountPrice > 0) {
+                    hasDiscountSwitch = true;
+                    discountPrice.value = currentService.price - currentService.discountPrice;
+                }
+            }
+
+            activateHasDiscount();
+            renderPreview();
+        }
+        void main();
+
+        hasDiscount.addEventListener('click', () => {
+            hasDiscountSwitch = !hasDiscountSwitch;
+            activateHasDiscount();
+            renderPreview();
+        });
+
+        preview.addEventListener('click', (event) => {
+            if (window.innerWidth <= 650) {
+                preview.style.display = 'none';
+            }
+        });
+
+        showPreview.addEventListener('click', (event) => {
+            preview.style.display = 'flex';
+        });
+
+        name.addEventListener('input', renderPreview);
+        description.addEventListener('input', renderPreview);
+        price.addEventListener('input', renderPreview);
+        amount.addEventListener('input', renderPreview);
+        discountPrice.addEventListener('input', renderPreview);
+        imageUrl.addEventListener('input', renderPreview);
+        imageCopyrightURL.addEventListener('input', renderPreview);
+        imageCopyrightText.addEventListener('input', renderPreview);
+
+        serviceForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            try {
+                const priceValue = parseFloat(price.value) || 0;
+                const discountPriceValue = priceValue - (hasDiscountSwitch ? (parseFloat(discountPrice.value) || 0) : priceValue);
+
+                submit.disabled = true;
+
+                if (currentMode === 'creation') {
+                    await persistence.createService(
+                        name.value,
+                        description.value,
+                        priceValue,
+                        hasDiscountSwitch ? discountPriceValue : 0,
+                        parseInt(amount.value),
+                        imageUrl.value,
+                        imageCopyrightURL.value,
+                        imageCopyrightText.value
+                    );
+                    document.body.appendChild(createToast('positive', 'Servicio creado exitosamente'));
+                } else if (currentMode === 'edition') {
+                    await persistence.updateService(
+                        parseInt(currentId),
+                        name.value,
+                        description.value,
+                        priceValue,
+                        hasDiscountSwitch ? discountPriceValue : 0,
+                        parseInt(amount.value),
+                        imageUrl.value,
+                        imageCopyrightURL.value,
+                        imageCopyrightText.value
+                    );
+                    document.body.appendChild(createToast('positive', 'Servicio actualizado exitosamente'));
+                }
+                setTimeout(() => {
+                    window.location.href = '/dashboard.html';
+                }, 1500);
+            } catch (error) {
+                document.body.appendChild(createToast('error', error.message));
+                submit.disabled = false;
+            }
+        });
+    </script>
+    <script src="/js/styles.js"></script>
+</body>
+
+</html>

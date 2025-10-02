@@ -13,6 +13,31 @@ function formatPrice(price, discountPrice) {
 }
 
 function createHomeServiceCard(service) {
+    if (!service.imageURL) {
+        service.imageURL = '/images/background-sd.jpg';
+    }
+    if (!service.name) {
+        service.name = 'Nombre del servicio';
+    }
+    if (!service.description) {
+        service.description = 'Descripción del servicio';
+    }
+    if (!service.price) {
+        service.price = 0;
+    }
+    if (!service.amount) {
+        service.amount = 0;
+    }
+    if (!service.discountPrice) {
+        service.discountPrice = 0;
+    }
+    if (!service.imageCopyrightURL) {
+        service.imageCopyrightURL = '/';
+    }
+    if (!service.imageCopyrightText) {
+        service.imageCopyrightText = 'Copyright';
+    }
+
     const div = document.createElement('div');
     div.className = 'card';
     div.innerHTML = `
