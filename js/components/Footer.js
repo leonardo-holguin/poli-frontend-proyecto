@@ -9,7 +9,7 @@ function createFooter() {
     <br />
     <p>Los datos ingresados en este sitio no serán almacenados ni utilizados con fines comerciales. Son únicamente de carácter demostrativo.</p>
     <br />
-    <p><strong>© 2025 NeuroTek</strong> – Proyecto académico universitario. Uso exclusivo con fines educativos.</p>
+    <p><strong>© 2026 NeuroTek</strong> – Proyecto académico universitario. Uso exclusivo con fines educativos.</p>
   `;
     return footer;
 }
